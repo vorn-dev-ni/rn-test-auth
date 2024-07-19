@@ -1,33 +1,47 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
-import Main from "../screens/Main";
-import TabNavigation from "./Tab";
-import DrawerNavigation from "./Drawer";
+import AuthStackNavigator from "./AuthStack";
+import HomeStackNavigator from "./HomeStack";
+import { SafeAreaView, StyleSheet } from "react-native";
+import { ViewStyle } from "react-native-size-matters";
+import { StatusBar } from "expo-status-bar";
+import appTheme from "../utils/theme";
+import { PaperProvider } from "react-native-paper";
 
-export default function RootNavigation() {
+export default function RootNavigation({
+  initRoute
+}: {
+  initRoute: '/auth' | '/tab-home'
+}) {
   const Stack = createNativeStackNavigator();
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        {/* <Stack.Screen name="/" component={Main} options={{title:"Home"}}/> */}
-        {/* default as stack  */}
+    <PaperProvider theme={appTheme}>
+      <NavigationContainer>
+        <SafeAreaView style={styles.root}>
+          <StatusBar style="auto" translucent />
+          <Stack.Navigator initialRouteName={initRoute}>
+            <Stack.Screen
+              name="/auth"
+              component={AuthStackNavigator}
+              options={{ title: "", headerShown: false }}
+            />
+            <Stack.Screen
+              name="/tab-home"
+              component={HomeStackNavigator}
+              options={{ title: "", headerShown: false }}
+            />
+          </Stack.Navigator>
+        </SafeAreaView>
+      </NavigationContainer>
 
-        {/* <Stack.Screen
-          name="/tab"
-          component={TabNavigation}
-          options={{ title: "Home", headerShown: false }}
-        /> */}
-
-        {/* default as bottom navigation  */}
-        
-        <Stack.Screen
-          name="/tab"
-          component={DrawerNavigation}
-          options={{ title: "Home", headerShown: false }}
-        />
-        {/* default as drawer  */}
-      </Stack.Navigator>
-    </NavigationContainer>
+    </PaperProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+
+  }
+})

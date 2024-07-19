@@ -1,0 +1,1 @@
+type AuthInitType = '/auth' | '/tab-home'

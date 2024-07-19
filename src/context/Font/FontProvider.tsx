@@ -63,7 +63,7 @@ export const FontContextProvider = ({ children }: { children: React.ReactNode })
     }
 
     return <FontContext.Provider value={{
-        fontFamily: 'Poppins_400Regular'
+        fontFamily: 'Poppins_700Bold'
     }}>
         {children}
     </FontContext.Provider>
