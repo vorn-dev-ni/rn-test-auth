@@ -1,0 +1,4 @@
+
+type FontContextType  = {
+  fontFamily: string;
+}
