@@ -1,0 +1,1 @@
+export const BASE_URL = "https://dev.tovtrip.com/usersvc/api/v1"
