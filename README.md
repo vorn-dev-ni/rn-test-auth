@@ -1,4 +1,3 @@
-Here's a sample README file for your React Native test assessment, including an overview, setup instructions, and a description of the implemented features:
 
 ---
 
@@ -116,4 +115,3 @@ The application includes a user-friendly interface with the following flows:
 ![1](https://github.com/user-attachments/assets/3d82065c-cab7-429d-ab51-b9ccb2d3221a)
 
 
-This README provides a comprehensive overview of your test assessment, setup instructions, and usage guide. You can customize the URLs, repository names, and other specific details as per your project requirements.
