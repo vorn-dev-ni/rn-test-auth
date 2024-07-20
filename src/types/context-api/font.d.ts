@@ -1,4 +1,0 @@
-
-type FontContextType  = {
-  fontFamily: string;
-}

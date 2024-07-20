@@ -5,24 +5,25 @@ import styles from './styles';
 
 type GenderRadioProps = {
     label: string;
+    value: "Male" | "Female";
+    updateGender: (newValue: string) => void;
 };
 
-const RadioGender: React.FC<GenderRadioProps> = ({ label }) => {
-    const [value, setValue] = useState('first');
+const RadioGender: React.FC<GenderRadioProps> = ({ label, value, updateGender }) => {
 
     return (
         <View style={styles.container}>
             <Text style={styles.label}>{label}</Text>
-            <RadioButton.Group onValueChange={newValue => setValue(newValue)} value={value}>
+            <RadioButton.Group onValueChange={newValue => updateGender(newValue)} value={value}>
                 <View style={styles.radioContainer}>
                     <View style={styles.radioItem}>
 
-                        <RadioButton value="first" />
+                        <RadioButton value="Male" />
                         <Text>Male</Text>
                     </View>
                     <View style={styles.radioItem}>
 
-                        <RadioButton value="second" />
+                        <RadioButton value="Female" />
                         <Text>Female</Text>
                     </View>
                 </View>

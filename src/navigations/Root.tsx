@@ -1,41 +1,80 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer } from "@react-navigation/native";
-import React from "react";
-import AuthStackNavigator from "./AuthStack";
-import HomeStackNavigator from "./HomeStack";
+import * as SplashScreenDefault from "expo-splash-screen"
+import { useFonts } from "expo-font";
+import { DarkTheme, NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
 import { SafeAreaView, StyleSheet } from "react-native";
-import { ViewStyle } from "react-native-size-matters";
 import { StatusBar } from "expo-status-bar";
-import appTheme from "../utils/theme";
-import { PaperProvider } from "react-native-paper";
+import { useAuth } from "../context/Auth/useAuthContext";
+import SplashScreen from "../components/Common/SplashScreen";
+import { AppRoutes } from "../route";
+import HomeStackNavigator from "./HomeStack";
+import AuthStackNavigator from "./AuthStack";
 
-export default function RootNavigation({
-  initRoute
-}: {
-  initRoute: '/auth' | '/tab-home'
-}) {
+export default function RootNavigation() {
   const Stack = createNativeStackNavigator();
+  const navigationRef = useNavigationContainerRef(); // You can also use a regular ref with `React.useRef()`
+  const {
+    session_id, accessToken, loading
+  } = useAuth()
+  if (loading) {
+    return null
+  }
+  else {
+    setTimeout(() => {
+      SplashScreenDefault.hideAsync();
+    }, 1000)
+  }
+
   return (
-    <PaperProvider theme={appTheme}>
-      <NavigationContainer>
+    <>
+
+      <NavigationContainer ref={navigationRef} >
+        <StatusBar
+
+          backgroundColor={'transparent'}
+          translucent={true}
+        />
         <SafeAreaView style={styles.root}>
-          <StatusBar style="auto" translucent />
-          <Stack.Navigator initialRouteName={initRoute}>
+
+          <Stack.Navigator
+            screenOptions={{
+              // header: () => null,
+              title: "",
+              headerShadowVisible: false,
+              presentation: 'modal',
+            }}
+
+          >
+            {
+              session_id && accessToken ? <Stack.Screen
+                name={AppRoutes.HOME}
+                component={HomeStackNavigator}
+                options={{ title: "", headerShown: true }}
+              />
+                : <Stack.Screen
+                  name={AppRoutes.LOGIN}
+                  component={AuthStackNavigator}
+                  options={{ title: "", headerShown: true }}
+                />
+
+            }
+
             <Stack.Screen
-              name="/auth"
-              component={AuthStackNavigator}
-              options={{ title: "", headerShown: false }}
+              name={AppRoutes.LOGIN_HOME}
+              component={HomeStackNavigator}
+              options={{ title: "", headerShown: true }}
             />
             <Stack.Screen
-              name="/tab-home"
-              component={HomeStackNavigator}
-              options={{ title: "", headerShown: false }}
+              name={AppRoutes.HOME_LOGIN}
+              component={AuthStackNavigator}
+              options={{ title: "", headerShown: true }}
             />
           </Stack.Navigator>
         </SafeAreaView>
       </NavigationContainer>
+    </>
 
-    </PaperProvider>
+
   );
 }
 

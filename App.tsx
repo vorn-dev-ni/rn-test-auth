@@ -1,16 +1,17 @@
 import "react-native-gesture-handler";
+import { AlertNotificationRoot } from "react-native-alert-notification";
 import { useFonts } from "expo-font";
 import { LogBox } from 'react-native';
-import * as SecureStore from 'expo-secure-store';
 import * as SplashScreen from "expo-splash-screen"
-import { StyleSheet } from "react-native";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import RootNavigation from "./src/navigations/Root";
+import { AuthContextProvider } from "./src/context/Auth/AuthContextProvider";
+import { PaperProvider } from "react-native-paper";
+import appTheme from "./src/utils/theme";
 
 LogBox.ignoreAllLogs();
 
 export default function App() {
-  const [initialRouteName, setInitialRouteName] = useState<AuthInitType | null>(null);
   const [fontsLoaded] = useFonts({
     "Poppins_100Thin": require('./assets/fonts/Poppins-Thin.ttf'),
     "Poppins_100Thin_Italic": require('./assets/fonts/Poppins-ThinItalic.ttf'),
@@ -31,29 +32,30 @@ export default function App() {
     "Poppins_900Black": require('./assets/fonts/Poppins-Black.ttf'),
     "Poppins_900Black_Italic": require('./assets/fonts/Poppins-BlackItalic.ttf'),
   });
-  const checkTokenAndPrepare = async () => {
-    const token = await SecureStore.getItemAsync('session_id');
+  const prepare = async () => {
     await SplashScreen.preventAutoHideAsync();
-    setInitialRouteName(token ? '/tab-home' : '/auth');
 
   };
   useEffect(() => {
 
-    checkTokenAndPrepare();
+    prepare();
   }, []);
 
-  if (!fontsLoaded || initialRouteName === null) {
+  if (!fontsLoaded) {
     return null;
   }
-  else {
-    SplashScreen.hideAsync();
-  }
+
+
 
 
   return (
-
-    <RootNavigation initRoute={initialRouteName!} />
-
+    <PaperProvider theme={appTheme}>
+      <AuthContextProvider >
+        <AlertNotificationRoot>
+          <RootNavigation />
+        </AlertNotificationRoot>
+      </AuthContextProvider>
+    </PaperProvider>
   );
 }
 

@@ -6,10 +6,11 @@
     "orientation": "portrait",
     "icon": "./assets/ic_launcher.png",
     "userInterfaceStyle": "light",
+    "backgroundColor": "#1a202c",
     "splash": {
       "image": "./assets/splash-custom.png",
       "resizeMode": "cover",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#1a202c"
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
