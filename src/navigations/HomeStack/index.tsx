@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Profile from '../../screens/Tab/Profile/profile';
+import Profile from '../../screens/Main/Profile/profile';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import responsive from '../../utils/responsive_util';
 import { AppRoutes } from '../../route';

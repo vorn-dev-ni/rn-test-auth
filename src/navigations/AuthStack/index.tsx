@@ -2,7 +2,7 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from '../../screens/Auth/Login';
 import responsive from '../../utils/responsive_util';
-import Profile from '../../screens/Tab/Profile/profile';
+import Profile from '../../screens/Main/Profile/profile';
 import { AppRoutes } from '../../route';
 const AuthStack = createNativeStackNavigator();
 const AuthStackNavigator = () => {
