@@ -108,5 +108,12 @@ The application includes a user-friendly interface with the following flows:
 
 ---
 
+![6](https://github.com/user-attachments/assets/40ef39fc-b466-4c1c-8b50-eb900c817de3)
+![5](https://github.com/user-attachments/assets/f0677651-94fb-4cad-9875-0c16cf9fc5c3)
+![4](https://github.com/user-attachments/assets/2e2f3495-6df6-4ec1-9c22-f540d8615cf3)
+![3](https://github.com/user-attachments/assets/fb74144c-dcd4-4cab-875e-263a5e88a092)
+![2](https://github.com/user-attachments/assets/335ad290-d1a2-45f0-940f-56b6a2446f3b)
+![1](https://github.com/user-attachments/assets/3d82065c-cab7-429d-ab51-b9ccb2d3221a)
+
 
 This README provides a comprehensive overview of your test assessment, setup instructions, and usage guide. You can customize the URLs, repository names, and other specific details as per your project requirements.
